@@ -1,0 +1,13 @@
+{"timestamp":"2025-05-09T16:37:40.927455","level":"info","event":"DAG bundles loaded: dags-folder, example_dags","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-05-09T16:37:41.003027","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/extract_datasets.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-09T16:37:42.426842","level":"warning","event":"Source directory not found: sources/Census LGA","logger":"root"}
+{"timestamp":"2025-05-09T16:37:42.435188","level":"warning","event":"Source directory not found: sources/LGA","logger":"root"}
+{"timestamp":"2025-05-09T16:37:42.435922","level":"warning","event":"airbnb dataset directory not found: sources/airbnb","logger":"root"}
+{"timestamp":"2025-05-09T16:37:42.436274","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.operators.python.PythonOperator"}
+{"timestamp":"2025-05-09T16:38:05.061694Z","level":"info","event":"Task instance is in running state","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-09T16:38:05.062343Z","level":"info","event":" Previous state of the Task instance: queued","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-09T16:38:05.062920Z","level":"info","event":"Current task name:extract_datasets_task","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-09T16:38:05.063603Z","level":"info","event":"Dag name:extracting_datasets_dag","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-09T16:38:05.064088Z","level":"info","event":"Task instance in success state","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-09T16:38:05.064672Z","level":"info","event":" Previous state of the Task instance: running","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-09T16:38:05.065790Z","level":"info","event":"Task operator:<Task(PythonOperator): extract_datasets_task>","chan":"stdout","logger":"task"}

@@ -1,0 +1,15 @@
+{"timestamp":"2025-05-09T18:44:53.446999","level":"info","event":"DAG bundles loaded: dags-folder, example_dags","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-05-09T18:44:53.448032","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/extract_datasets.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-09T18:44:53.909154Z","level":"info","event":"Task instance is in running state","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-09T18:44:53.910652Z","level":"info","event":" Previous state of the Task instance: queued","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-09T18:44:53.912038Z","level":"info","event":"Current task name:extract_datasets_task","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-09T18:44:53.912974Z","level":"info","event":"Dag name:extracting_datasets_dag","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-09T18:44:53.913534Z","level":"info","event":"Task instance in success state","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-09T18:44:53.914024Z","level":"info","event":" Previous state of the Task instance: running","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-09T18:44:53.914507Z","level":"info","event":"Task operator:<Task(PythonOperator): extract_datasets_task>","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-09T18:44:53.589791","level":"info","event":"Copied: 2016Census_G01_NSW_LGA.csv","logger":"root"}
+{"timestamp":"2025-05-09T18:44:53.606921","level":"info","event":"Copied: 2016Census_G02_NSW_LGA.csv","logger":"root"}
+{"timestamp":"2025-05-09T18:44:53.626403","level":"info","event":"Copied: NSW_LGA_CODE.csv","logger":"root"}
+{"timestamp":"2025-05-09T18:44:53.653156","level":"info","event":"Copied: NSW_LGA_SUBURB.csv","logger":"root"}
+{"timestamp":"2025-05-09T18:44:53.788858","level":"info","event":"Copied: 05_2020.csv","logger":"root"}
+{"timestamp":"2025-05-09T18:44:53.789066","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.operators.python.PythonOperator"}

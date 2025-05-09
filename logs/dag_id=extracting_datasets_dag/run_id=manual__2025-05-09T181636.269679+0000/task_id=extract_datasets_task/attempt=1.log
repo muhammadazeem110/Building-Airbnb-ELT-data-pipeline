@@ -1,0 +1,8 @@
+{"timestamp":"2025-05-09T18:34:21.536551","level":"info","event":"DAG bundles loaded: dags-folder, example_dags","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-05-09T18:34:21.537805","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/extract_datasets.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-09T18:34:22.378590","level":"info","event":"Copied: 2016Census_G01_NSW_LGA.csv","logger":"root"}
+{"timestamp":"2025-05-09T18:34:22.589812","level":"info","event":"Copied: 2016Census_G02_NSW_LGA.csv","logger":"root"}
+{"timestamp":"2025-05-09T18:34:22.719999","level":"info","event":"Copied: NSW_LGA_CODE.csv","logger":"root"}
+{"timestamp":"2025-05-09T18:34:22.865087","level":"info","event":"Copied: NSW_LGA_SUBURB.csv","logger":"root"}
+{"timestamp":"2025-05-09T18:34:23.344101","level":"info","event":"Copied: 05_2020.csv","logger":"root"}
+{"timestamp":"2025-05-09T18:34:23.344432","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.operators.python.PythonOperator"}
