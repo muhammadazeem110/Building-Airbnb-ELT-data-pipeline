@@ -1,0 +1,5 @@
+{"timestamp":"2025-05-15T15:12:32.401593","level":"info","event":"DAG bundles loaded: dags-folder, example_dags","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-05-15T15:12:32.568023","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/ingestion.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-15T15:12:38.113363","level":"info","event":"File path received: /opt/airflow/datasets/NSW_LGA_CODE.csv","logger":"root"}
+{"timestamp":"2025-05-15T15:12:38.773151","level":"info","event":"DataFrame shape: (129, 2)","logger":"root"}
+{"timestamp":"2025-05-15T15:12:38.848099","level":"info","event":"Secrets backends loaded for worker","count":1,"backend_classes":["EnvironmentVariablesBackend"],"logger":"supervisor"}

@@ -1,0 +1,75 @@
+[0m10:50:10.278885 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F894F84E30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F892E48260>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F89537AF60>]}
+
+
+============================== 10:50:10.329304 | 4277bdee-d2f1-4357-a747-f6255891c43a ==============================
+[0m10:50:10.329304 [info ] [MainThread]: Running with dbt=1.9.4
+[0m10:50:10.329304 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'debug': 'False', 'fail_fast': 'False', 'log_path': 'logs', 'profiles_dir': 'C:\\Users\\Dell\\.dbt', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'invocation_command': 'dbt init airbnb_warehouse', 'static_parser': 'True', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m10:50:10.512370 [warn ] [MainThread]: [ConfigFolderDirectory]: Unable to parse logging event dictionary. Failed to parse dir field: expected string or bytes-like object, got 'WindowsPath'.. Dictionary: {'dir': WindowsPath('C:/Users/Dell/.dbt')}
+[0m10:50:10.512370 [info ] [MainThread]: Creating dbt configuration folder at 
+[0m10:50:10.512370 [debug] [MainThread]: Starter project path: G:\1. Data Engineer\1. DataCamp\DE Projects\airbnd-venv\Lib\site-packages\dbt\include\starter_project
+[0m10:50:10.595716 [info ] [MainThread]: 
+Your new dbt project "airbnb_warehouse" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m10:50:10.595716 [info ] [MainThread]: Setting up your profile.
+[0m10:53:55.803327 [info ] [MainThread]: Profile airbnb_warehouse written to C:\Users\Dell\.dbt\profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m10:53:55.805327 [debug] [MainThread]: Command `dbt init` succeeded at 10:53:55.805327 after 227.98 seconds
+[0m10:53:55.806324 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F894FE3140>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F895B5D820>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F894F032F0>]}
+[0m10:53:55.807289 [debug] [MainThread]: Flushing usage events
+[0m10:53:57.951102 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m11:20:42.253031 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AF977FBE30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AF977F9E20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AF974938F0>]}
+
+
+============================== 11:20:42.279082 | 77016b36-0a07-46cd-bdcf-bcb5d2d8c881 ==============================
+[0m11:20:42.279082 [info ] [MainThread]: Running with dbt=1.9.4
+[0m11:20:42.281060 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'debug': 'False', 'log_path': 'logs', 'fail_fast': 'False', 'profiles_dir': 'C:\\Users\\Dell\\.dbt', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'None', 'quiet': 'False', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'invocation_command': 'dbt init airbnb_warehouse', 'static_parser': 'True', 'log_format': 'default', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m11:20:42.418438 [debug] [MainThread]: Starter project path: G:\1. Data Engineer\1. DataCamp\DE Projects\airbnd-venv\Lib\site-packages\dbt\include\starter_project
+[0m11:20:42.439428 [info ] [MainThread]: 
+Your new dbt project "airbnb_warehouse" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m11:20:42.440421 [info ] [MainThread]: Setting up your profile.
+[0m11:22:21.035205 [info ] [MainThread]: Profile airbnb_warehouse written to C:\Users\Dell\.dbt\profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m11:22:21.038168 [debug] [MainThread]: Command `dbt init` succeeded at 11:22:21.037165 after 98.96 seconds
+[0m11:22:21.038168 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AF97F12150>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AF97A6D280>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AF981D8EF0>]}
+[0m11:22:21.040165 [debug] [MainThread]: Flushing usage events
+[0m11:22:22.937779 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m11:24:22.935949 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000020BE5ED7230>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000020BE8337140>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000020BE761D730>]}
+
+
+============================== 11:24:22.947946 | 8b96088a-16e6-4894-96b5-244f28936462 ==============================
+[0m11:24:22.947946 [info ] [MainThread]: Running with dbt=1.9.4
+[0m11:24:22.951146 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': 'C:\\Users\\Dell\\.dbt', 'debug': 'False', 'warn_error': 'None', 'log_path': 'logs', 'version_check': 'True', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'False', 'quiet': 'False', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'invocation_command': 'dbt run', 'static_parser': 'True', 'log_format': 'default', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m11:24:22.953150 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path G:\1. Data Engineer\1. DataCamp\DE Projects\dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m11:24:22.957611 [debug] [MainThread]: Command `dbt run` failed at 11:24:22.956612 after 0.36 seconds
+[0m11:24:22.958610 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000020BE7C3E6C0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000020BE809D040>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000020BE5ED7230>]}
+[0m11:24:22.960610 [debug] [MainThread]: Flushing usage events
+[0m11:24:24.966558 [debug] [MainThread]: An error was encountered while trying to flush usage events

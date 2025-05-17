@@ -1,0 +1,12 @@
+{"timestamp":"2025-05-12T05:51:13.412724","level":"info","event":"DAG bundles loaded: dags-folder, example_dags","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-05-12T05:51:13.443081","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/ingestion.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-12T05:51:14.865592Z","level":"info","event":"Task instance is in running state","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-12T05:51:14.866411Z","level":"info","event":" Previous state of the Task instance: queued","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-12T05:51:14.869796Z","level":"info","event":"Current task name:ingesting_airbnb","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-12T05:51:14.870628Z","level":"info","event":"Dag name:ingesting_datasets","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-12T05:51:14.797052","level":"info","event":"File path received: /opt/airflow/datasets/NSW_LGA_CODE.csv","logger":"root"}
+{"timestamp":"2025-05-12T05:51:14.942222","level":"info","event":"DataFrame shape: (129, 2)","logger":"root"}
+{"timestamp":"2025-05-12T05:51:14.942557","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.operators.python.PythonOperator"}
+{"timestamp":"2025-05-12T05:51:15.071703Z","level":"info","event":"Task instance in success state","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-12T05:51:15.077190Z","level":"info","event":" Previous state of the Task instance: running","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-12T05:51:15.080171Z","level":"info","event":"Task operator:<Task(PythonOperator): ingesting_airbnb>","chan":"stdout","logger":"task"}

@@ -1,0 +1,16 @@
+{"timestamp":"2025-05-15T14:54:31.038051","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/extract_datasets.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-15T14:55:37.868660","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/extract_datasets.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-15T14:56:09.926963","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/extract_datasets.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-15T14:56:41.026943","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/extract_datasets.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-15T14:57:17.286764","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/extract_datasets.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-15T14:57:49.709021","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/extract_datasets.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-15T14:58:21.155193","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/extract_datasets.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-15T14:58:54.099193","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/extract_datasets.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-15T14:59:26.831596","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/extract_datasets.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-15T14:59:59.034637","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/extract_datasets.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-15T15:00:41.064324","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/extract_datasets.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-15T15:06:14.181305","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/extract_datasets.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-15T15:06:53.027762","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/extract_datasets.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-15T15:07:24.061258","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/extract_datasets.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-15T15:08:11.437839","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/extract_datasets.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-15T15:08:58.913970","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/extract_datasets.py","logger":"airflow.models.dagbag.DagBag"}

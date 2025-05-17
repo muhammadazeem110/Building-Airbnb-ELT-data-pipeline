@@ -1,0 +1,11 @@
+{"timestamp":"2025-05-12T05:47:46.187329","level":"info","event":"DAG bundles loaded: dags-folder, example_dags","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-05-12T05:47:46.205732","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/ingestion.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-12T05:47:47.712879Z","level":"info","event":"Task instance is in running state","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-12T05:47:47.713614Z","level":"info","event":" Previous state of the Task instance: queued","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-12T05:47:47.714805Z","level":"info","event":"Current task name:ingesting_airbnb","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-12T05:47:47.716681Z","level":"info","event":"Dag name:ingesting_datasets","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-12T05:47:47.718443Z","level":"info","event":"Task instance in success state","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-12T05:47:47.719619Z","level":"info","event":" Previous state of the Task instance: running","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-12T05:47:47.720361Z","level":"info","event":"Task operator:<Task(PythonOperator): ingesting_airbnb>","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-12T05:47:47.558173","level":"info","event":"hello","logger":"root"}
+{"timestamp":"2025-05-12T05:47:47.558903","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.operators.python.PythonOperator"}

@@ -1,0 +1,15 @@
+{"timestamp":"2025-05-12T05:52:44.566922","level":"info","event":"DAG bundles loaded: dags-folder, example_dags","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-05-12T05:52:44.576972","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/ingestion.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-12T05:52:45.145755Z","level":"info","event":"Task instance is in running state","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-12T05:52:45.148231Z","level":"info","event":" Previous state of the Task instance: queued","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-12T05:52:45.149323Z","level":"info","event":"Current task name:ingesting_airbnb","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-12T05:52:45.149899Z","level":"info","event":"Dag name:ingesting_datasets","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-12T05:52:45.150391Z","level":"info","event":"Failed to connect to PostgreSQL: (psycopg2.OperationalError) connection to server at \"postgres\" (172.18.0.2), port 5432 failed: FATAL:  password authentication failed for user \"postgres\"","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-12T05:52:45.151124Z","level":"info","event":"","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-12T05:52:45.151635Z","level":"info","event":"(Background on this error at: https://sqlalche.me/e/14/e3q8)","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-12T05:52:45.152054Z","level":"info","event":"Task instance in success state","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-12T05:52:45.152499Z","level":"info","event":" Previous state of the Task instance: running","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-12T05:52:45.153026Z","level":"info","event":"Task operator:<Task(PythonOperator): ingesting_airbnb>","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-12T05:52:44.962071","level":"info","event":"File path received: /opt/airflow/datasets/NSW_LGA_CODE.csv","logger":"root"}
+{"timestamp":"2025-05-12T05:52:45.050897","level":"info","event":"DataFrame shape: (129, 2)","logger":"root"}
+{"timestamp":"2025-05-12T05:52:45.143295","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.operators.python.PythonOperator"}
