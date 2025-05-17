@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: bronze
+    database: postgres
+    schema: bronze
+    tables:
+      - name: airbnb_05_2020
+      - name: 2016Census_G01_NSW_LGA
+      - name: 2016Census_G02_NSW_LGA
+      - name: NSW_LGA_CODE
+      - name: NSW_LGA_SUBURB
