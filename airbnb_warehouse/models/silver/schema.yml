@@ -1,0 +1,355 @@
+version: 2
+
+models:
+  - name: stg_airbnb_listings
+    description: >
+      Staging model containing essential listing details such as listing ID, host information,
+      property type, pricing, and availability as scraped from the original Airbnb data.
+    columns:
+      - name: listing_id
+        description: Unique identifier for each listing.
+      - name: host_id
+        description: Unique identifier for the host of the listing.
+      - name: scrape_id
+        description: Identifier for the scraping session used to collect the data.
+      - name: scraped_date
+        description: The date on which the listing data was scraped.
+      - name: listing_neighbourhood
+        description: The general area or Local Government Area (LGA) where the listing is located.
+      - name: property_type
+        description: Type of property listed, e.g., Apartment, House, Townhouse.
+      - name: room_type
+        description: Type of room available, e.g., Entire home/apt, Private room, Shared room.
+      - name: accommodates
+        description: The maximum number of guests the listing can accommodate.
+      - name: price
+        description: The nightly price of the listing.
+      - name: has_availability
+        description: Indicates whether the listing is currently available for booking (TRUE/FALSE).
+      - name: availability_30
+        description: Number of days the listing is available in the next 30 days.
+
+  - name: stg_airbnb_hosts
+    description: This table contains information about Airbnb hosts and their profiles, including their unique identifier, names, activity status and thier location.
+    columns:
+      - name: host_id
+        description: Unique identifier for the host
+        tests:
+          - not_null
+          - unique
+      - name: host_name
+        description: name of the host as provided in the listing
+      - name: host_since
+        description: The date when the host started hosting on Airbnb
+      - name: host_is_superhost
+        description: Indicates whether the host has earned the Superhost badge on their profile, recognizing consistent high-quality hosting.
+      - name: host_neighbourhood
+        description: The neighbourhood or locality the host identifies as their own. This is self-reported and may differ from the listing location.
+
+  - name: stg_airbnb_reviews
+    description: The table containing review-related information for Airbnb listings, including total reviews and detailed review scores.
+    columns:
+      - name: listing_id
+        description: Unique identifier for each listing.
+      - name: number_of_reviews
+        description: Total number of reviews received for the listing.
+      - name: review_scores_rating
+        description: Overall rating score given by guests, typically on a scale from 1 to 100.
+      - name: review_scores_accuracy
+        description: Rating reflecting how accurately the listing description matched the actual experience.
+      - name: review_scores_cleanliness
+        description: Rating of the cleanliness of the listing as reported by guests.
+      - name: review_scores_checkin
+        description: Rating of the check-in experience, including ease and convenience.
+      - name: review_scores_communication
+        description: Rating of the host's responsiveness and communication with guests.
+      - name: review_scores_value
+        description: Rating of the value for money provided by the listing.
+
+  - name: stg_suburb_lga_map
+    description: Mapping of Local Government Area (LGA) in New South Wales to their Suburbs. Each row represents a suburb within a specific LGA as recorded in 2016 Census.
+    columns:
+      - name: lga_name
+        description: Name of Local Government Area (LGA)
+
+      - name: surburb_name
+        description: Name of the suburb within the LGA
+
+  - name: stg_lga_lookup
+    description: >
+      Mapping of Local Government Area (LGA) names to their unique LGA codes.
+      Each row represents a distinct LGA with its corresponding name and code.
+    columns:
+      - name: lga_code
+        description: Unique code assigned to each Local Government Area (LGA)
+        tests:
+          - not_null
+          - unique
+      - name: lga_name
+        description: Name of the Local Government Area (LGA)
+
+  - name: stg_census_g01
+    description: >
+      2016 Australian Census demographic data for New South Wales (NSW) by Local Government Area (LGA).
+    columns:
+      - name: LGA_CODE_2016
+        description: Local Government Area code (2016)
+        tests:
+          - not_null
+          - unique
+
+      - name: Tot_P_M
+        description: Total number of male persons
+      - name: Tot_P_F
+        description: Total number of female persons
+      - name: Tot_P_P
+        description: Total number of persons
+
+      - name: Age_0_4_yr_M
+        description: Number of males aged 0 to 4 years
+      - name: Age_0_4_yr_F
+        description: Number of females aged 0 to 4 years
+      - name: Age_0_4_yr_P
+        description: Total number of persons aged 0 to 4 years
+      - name: Age_5_14_yr_M
+        description: Number of males aged 5 to 14 years
+      - name: Age_5_14_yr_F
+        description: Number of females aged 5 to 14 years
+      - name: Age_5_14_yr_P
+        description: Total number of persons aged 5 to 14 years
+      - name: Age_15_19_yr_M
+        description: Number of males aged 15 to 19 years
+      - name: Age_15_19_yr_F
+        description: Number of females aged 15 to 19 years
+      - name: Age_15_19_yr_P
+        description: Total number of persons aged 15 to 19 years
+      - name: Age_20_24_yr_M
+        description: Number of males aged 20 to 24 years
+      - name: Age_20_24_yr_F
+        description: Number of females aged 20 to 24 years
+      - name: Age_20_24_yr_P
+        description: Total number of persons aged 20 to 24 years
+      - name: Age_25_34_yr_M
+        description: Number of males aged 25 to 34 years
+      - name: Age_25_34_yr_F
+        description: Number of females aged 25 to 34 years
+      - name: Age_25_34_yr_P
+        description: Total number of persons aged 25 to 34 years
+      - name: Age_35_44_yr_M
+        description: Number of males aged 35 to 44 years
+      - name: Age_35_44_yr_F
+        description: Number of females aged 35 to 44 years
+      - name: Age_35_44_yr_P
+        description: Total number of persons aged 35 to 44 years
+      - name: Age_45_54_yr_M
+        description: Number of males aged 45 to 54 years
+      - name: Age_45_54_yr_F
+        description: Number of females aged 45 to 54 years
+      - name: Age_45_54_yr_P
+        description: Total number of persons aged 45 to 54 years
+      - name: Age_55_64_yr_M
+        description: Number of males aged 55 to 64 years
+      - name: Age_55_64_yr_F
+        description: Number of females aged 55 to 64 years
+      - name: Age_55_64_yr_P
+        description: Total number of persons aged 55 to 64 years
+      - name: Age_65_74_yr_M
+        description: Number of males aged 65 to 74 years
+      - name: Age_65_74_yr_F
+        description: Number of females aged 65 to 74 years
+      - name: Age_65_74_yr_P
+        description: Total number of persons aged 65 to 74 years
+      - name: Age_75_84_yr_M
+        description: Number of males aged 75 to 84 years
+      - name: Age_75_84_yr_F
+        description: Number of females aged 75 to 84 years
+      - name: Age_75_84_yr_P
+        description: Total number of persons aged 75 to 84 years
+      - name: Age_85ov_M
+        description: Number of males aged 85 years and over
+      - name: Age_85ov_F
+        description: Number of females aged 85 years and over
+      - name: Age_85ov_P
+        description: Total number of persons aged 85 years and over
+
+      - name: Counted_Census_Night_home_M
+        description: Male persons counted at home on census night
+      - name: Counted_Census_Night_home_F
+        description: Female persons counted at home on census night
+      - name: Counted_Census_Night_home_P
+        description: Total persons counted at home on census night
+      - name: Count_Census_Nt_Ewhere_Aust_M
+        description: Male persons counted elsewhere in Australia on census night
+      - name: Count_Census_Nt_Ewhere_Aust_F
+        description: Female persons counted elsewhere in Australia on census night
+      - name: Count_Census_Nt_Ewhere_Aust_P
+        description: Total persons counted elsewhere in Australia on census night
+
+      - name: Indigenous_psns_Aboriginal_M
+        description: Number of male persons identifying as Aboriginal or Torres Strait Islander
+      - name: Indigenous_psns_Aboriginal_F
+        description: Number of female persons identifying as Aboriginal or Torres Strait Islander
+      - name: Indigenous_psns_Aboriginal_P
+        description: Total number of persons identifying as Aboriginal or Torres Strait Islander
+      - name: Indig_psns_Torres_Strait_Is_M
+        description: Number of male persons identifying as Torres Strait Islander
+      - name: Indig_psns_Torres_Strait_Is_F
+        description: Number of female persons identifying as Torres Strait Islander
+      - name: Indig_psns_Torres_Strait_Is_P
+        description: Total number of persons identifying as Torres Strait Islander
+      - name: Indig_Bth_Abor_Torres_St_Is_M
+        description: Number of male persons identifying as both Aboriginal and Torres Strait Islander
+      - name: Indig_Bth_Abor_Torres_St_Is_F
+        description: Number of female persons identifying as both Aboriginal and Torres Strait Islander
+      - name: Indig_Bth_Abor_Torres_St_Is_P
+        description: Total number of persons identifying as both Aboriginal and Torres Strait Islander
+      - name: Indigenous_P_Tot_M
+        description: Total number of male Indigenous persons (Aboriginal and/or Torres Strait Islander)
+      - name: Indigenous_P_Tot_F
+        description: Total number of female Indigenous persons (Aboriginal and/or Torres Strait Islander)
+      - name: Indigenous_P_Tot_P
+        description: Total number of Indigenous persons (Aboriginal and/or Torres Strait Islander)
+
+      - name: Birthplace_Australia_M
+        description: Number of male persons born in Australia
+      - name: Birthplace_Australia_F
+        description: Number of female persons born in Australia
+      - name: Birthplace_Australia_P
+        description: Total number of persons born in Australia
+
+      - name: Birthplace_Elsewhere_M
+        description: Number of male persons born overseas
+      - name: Birthplace_Elsewhere_F
+        description: Number of female persons born overseas
+      - name: Birthplace_Elsewhere_P
+        description: Total number of persons born overseas
+
+      - name: Lang_spoken_home_Eng_only_M
+        description: Number of male persons who speak only English at home
+      - name: Lang_spoken_home_Eng_only_F
+        description: Number of female persons who speak only English at home
+      - name: Lang_spoken_home_Eng_only_P
+        description: Total number of persons who speak only English at home
+      - name: Lang_spoken_home_Oth_Lang_M
+        description: Number of male persons who speak languages other than English at home
+      - name: Lang_spoken_home_Oth_Lang_F
+        description: Number of female persons who speak languages other than English at home
+      - name: Lang_spoken_home_Oth_Lang_P
+        description: Total number of persons who speak languages other than English at home
+
+      - name: Australian_citizen_M
+        description: Number of male Australian citizens
+      - name: Australian_citizen_F
+        description: Number of female Australian citizens
+      - name: Australian_citizen_P
+        description: Total number of Australian citizens
+
+      - name: Age_psns_att_educ_inst_0_4_M
+        description: Number of male persons aged 0 to 4 years attending educational institutions
+      - name: Age_psns_att_educ_inst_0_4_F
+        description: Number of female persons aged 0 to 4 years attending educational institutions
+      - name: Age_psns_att_educ_inst_0_4_P
+        description: Total number of persons aged 0 to 4 years attending educational institutions
+      - name: Age_psns_att_educ_inst_5_14_M
+        description: Number of male persons aged 5 to 14 years attending educational institutions
+      - name: Age_psns_att_educ_inst_5_14_F
+        description: Number of female persons aged 5 to 14 years attending educational institutions
+      - name: Age_psns_att_educ_inst_5_14_P
+        description: Total number of persons aged 5 to 14 years attending educational institutions
+      - name: Age_psns_att_edu_inst_15_19_M
+        description: Number of male persons aged 15 to 19 years attending educational institutions
+      - name: Age_psns_att_edu_inst_15_19_F
+        description: Number of female persons aged 15 to 19 years attending educational institutions
+      - name: Age_psns_att_edu_inst_15_19_P
+        description: Total number of persons aged 15 to 19 years attending educational institutions
+      - name: Age_psns_att_edu_inst_20_24_M
+        description: Number of male persons aged 20 to 24 years attending educational institutions
+      - name: Age_psns_att_edu_inst_20_24_F
+        description: Number of female persons aged 20 to 24 years attending educational institutions
+      - name: Age_psns_att_edu_inst_20_24_P
+        description: Total number of persons aged 20 to 24 years attending educational institutions
+      - name: Age_psns_att_edu_inst_25_ov_M
+        description: Number of male persons aged 25 years and over attending educational institutions
+      - name: Age_psns_att_edu_inst_25_ov_F
+        description: Number of female persons aged 25 years and over attending educational institutions
+      - name: Age_psns_att_edu_inst_25_ov_P
+        description: Total number of persons aged 25 years and over attending educational institutions
+
+      - name: High_yr_schl_comp_Yr_12_eq_M
+        description: Number of male persons who completed Year 12 or equivalent
+      - name: High_yr_schl_comp_Yr_12_eq_F
+        description: Number of female persons who completed Year 12 or equivalent
+      - name: High_yr_schl_comp_Yr_12_eq_P
+        description: Total number of persons who completed Year 12 or equivalent
+      - name: High_yr_schl_comp_Yr_11_eq_M
+        description: Number of male persons who completed Year 11 or equivalent
+      - name: High_yr_schl_comp_Yr_11_eq_F
+        description: Number of female persons who completed Year 11 or equivalent
+      - name: High_yr_schl_comp_Yr_11_eq_P
+        description: Total number of persons who completed Year 11 or equivalent
+      - name: High_yr_schl_comp_Yr_10_eq_M
+        description: Number of male persons who completed Year 10 or equivalent
+      - name: High_yr_schl_comp_Yr_10_eq_F
+        description: Number of female persons who completed Year 10 or equivalent
+      - name: High_yr_schl_comp_Yr_10_eq_P
+        description: Total number of persons who completed Year 10 or equivalent
+      - name: High_yr_schl_comp_Yr_9_eq_M
+        description: Number of male persons who completed Year 9 or equivalent
+      - name: High_yr_schl_comp_Yr_9_eq_F
+        description: Number of female persons who completed Year 9 or equivalent
+      - name: High_yr_schl_comp_Yr_9_eq_P
+        description: Total number of persons who completed Year 9 or equivalent
+
+      - name: High_yr_schl_comp_Yr_8_belw_M
+        description: Number of male persons who completed Year 8 or below
+      - name: High_yr_schl_comp_Yr_8_belw_F
+        description: Number of female persons who completed Year 8 or below
+      - name: High_yr_schl_comp_Yr_8_belw_P
+        description: Total number of persons who completed Year 8 or below
+
+      - name: High_yr_schl_comp_D_n_g_sch_M
+        description: Number of male persons with no schooling completed
+      - name: High_yr_schl_comp_D_n_g_sch_F
+        description: Number of female persons with no schooling completed
+      - name: High_yr_schl_comp_D_n_g_sch_P
+        description: Total number of persons with no schooling completed
+
+      - name: Count_psns_occ_priv_dwgs_M
+        description: Number of male persons occupying private dwellings
+      - name: Count_psns_occ_priv_dwgs_F
+        description: Number of female persons occupying private dwellings
+      - name: Count_psns_occ_priv_dwgs_P
+        description: Total number of persons occupying private dwellings
+      - name: Count_Persons_other_dwgs_M
+        description: Number of male persons occupying other dwellings
+      - name: Count_Persons_other_dwgs_F
+        description: Number of female persons occupying other dwellings
+      - name: Count_Persons_other_dwgs_P
+        description: Total number of persons occupying other dwellings
+
+  - name: stg_census_g02
+    description: >
+      Demographic and socioeconomic summary statistics from the 2016 Australian Census for Local Government Areas (LGAs) in NSW.
+      Includes data on average household size, median age, income, mortgage repayments, rent, and housing occupancy.
+    columns:
+      - name: average_household_size
+        description: Average number of persons per household.
+      - name: median_age_persons
+        description: Median age of persons in the LGA.
+      - name: median_mortgage_repay_monthly
+        description: Median monthly mortgage repayment amount.
+      - name: median_tot_prsnl_inc_weekly
+        description: Median total personal income per week.
+      - name: median_rent_weekly
+        description: Median weekly rent paid.
+      - name: median_tot_fam_inc_weekly
+        description: Median total family income per week.
+      - name: average_num_psns_per_bedroom
+        description: Average number of persons per bedroom in dwellings.
+      - name: median_tot_hhd_inc_weekly
+        description: Median total household income per week.
+      - name: lga_code_2016
+        description: Local Government Area code (2016).
+        tests:
+          - not_null
+          - unique

@@ -39,5 +39,6 @@ models:
     gold:
       +schema: gold
       +materialized: table
-    example:
-      +materialized: view
+    snapshot:
+      +target_schema: snapshots
+      +materialized: snapshot
