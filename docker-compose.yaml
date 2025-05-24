@@ -79,6 +79,7 @@ x-airflow-common:
     - ${AIRFLOW_PROJ_DIR:-.}/plugins:/opt/airflow/plugins
     - ${AIRFLOW_PROJ_DIR:-.}/datasets:/opt/airflow/datasets
     - ${AIRFLOW_PROJ_DIR:-.}/sources:/opt/airflow/sources
+    - ${AIRFLOW_PROJ_DIR:-.}/airbnb_warehouse:/opt/airflow/airbnb_warehouse
     # - ${AIRFLOW_PROJ_DIR:-.}/requirements.txt:/opt/airflow/requirements.txt
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
@@ -260,14 +261,14 @@ services:
         echo
         echo "Creating missing opt dirs if missing:"
         echo
-        mkdir -v -p /opt/airflow/{logs,dags,plugins,config,datasets,sources}
+        mkdir -v -p /opt/airflow/{logs,dags,plugins,config,datasets,sources,airbnb_warehouse}
         echo
         echo "Airflow version:"
         /entrypoint airflow version
         echo
         echo "Files in shared volumes:"
         echo
-        ls -la /opt/airflow/{logs,dags,plugins,config,datasets,sources}
+        ls -la /opt/airflow/{logs,dags,plugins,config,datasets,sources,airbnb_warehouse}
         echo
         echo "Running airflow config list to create default config file if missing."
         echo
@@ -275,7 +276,7 @@ services:
         echo
         echo "Files in shared volumes:"
         echo
-        ls -la /opt/airflow/{logs,dags,plugins,config,datasets,sources}
+        ls -la /opt/airflow/{logs,dags,plugins,config,datasets,sources,airbnb_warehouse}
         echo
         echo "Change ownership of files in /opt/airflow to ${AIRFLOW_UID}:0"
         echo
@@ -283,7 +284,7 @@ services:
         echo
         echo "Change ownership of files in shared volumes to ${AIRFLOW_UID}:0"
         echo
-        chown -v -R "${AIRFLOW_UID}:0" /opt/airflow/{logs,dags,plugins,config,sources}
+        chown -v -R "${AIRFLOW_UID}:0" /opt/airflow/{logs,dags,plugins,config,sources,airbnb_warehouse}
         echo
         echo "Files in shared volumes:"
         echo
