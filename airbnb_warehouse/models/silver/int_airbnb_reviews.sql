@@ -14,8 +14,9 @@ WITH airbnb_data AS (
 ] %}
 
 SELECT
-    listig_id,
+    listing_id,
     {% for col, default in coalesced_columns %}
-        COALESCE(NULLIF({{ col }}, ''), {{ default }}) as {{ col }} {% if not loop.last %}, {% endif %}
+        COALESCE({{ col }},{{ default }}) as {{ col }} {% if not loop.last %}, {% endif %}
     {% endfor %}
 From airbnb_data
+ORDER By listing_id

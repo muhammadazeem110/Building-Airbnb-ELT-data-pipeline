@@ -1,81 +1,83 @@
 version: 2
 
 models:
-  - name: stg_airbnb_listings
+  - name: int_airbnb_listings
     description: >
       Staging model containing essential listing details such as listing ID, host information,
       property type, pricing, and availability as scraped from the original Airbnb data.
     columns:
       - name: listing_id
-        description: Unique identifier for each listing.
-      - name: host_id
-        description: Unique identifier for the host of the listing.
-      - name: scrape_id
-        description: Identifier for the scraping session used to collect the data.
-      - name: scraped_date
-        description: The date on which the listing data was scraped.
-      - name: listing_neighbourhood
-        description: The general area or Local Government Area (LGA) where the listing is located.
-      - name: property_type
-        description: Type of property listed, e.g., Apartment, House, Townhouse.
-      - name: room_type
-        description: Type of room available, e.g., Entire home/apt, Private room, Shared room.
-      - name: accommodates
-        description: The maximum number of guests the listing can accommodate.
-      - name: price
-        description: The nightly price of the listing.
-      - name: has_availability
-        description: Indicates whether the listing is currently available for booking (TRUE/FALSE).
-      - name: availability_30
-        description: Number of days the listing is available in the next 30 days.
-
-  - name: stg_airbnb_hosts
-    description: This table contains information about Airbnb hosts and their profiles, including their unique identifier, names, activity status and thier location.
-    columns:
-      - name: host_id
-        description: Unique identifier for the host
+        description: Unique identifier for each listing
         tests:
           - not_null
           - unique
+      - name: host_id
+        description: Unique identifier for the host of the listing
+      - name: scrape_id
+        description: Identifier for the scraping session used to collect the data
+      - name: scraped_date
+        description: The date on which the listing data was scraped
+      - name: listing_neighbourhood
+        description: The general area or Local Government Area (LGA) where the listing is located
+      - name: property_type
+        description: Type of property listed, e.g., Apartment, House, Townhouse
+      - name: room_type
+        description: Type of room available, e.g., Entire home/apt, Private room, Shared room
+      - name: accommodates
+        description: The maximum number of guests the listing can accommodate
+      - name: price
+        description: The nightly price of the listing
+      - name: has_availability
+        description: Indicates whether the listing is currently available for booking (TRUE/FALSE)
+      - name: availability_30
+        description: Number of days the listing is available in the next 30 days
+
+  - name: int_airbnb_hosts
+    description: This table contains information about Airbnb hosts and their profiles, including their unique identifier, names, activity status, and their location.
+    columns:
+      - name: host_id
+        description: Unique identifier for the host
       - name: host_name
         description: name of the host as provided in the listing
       - name: host_since
         description: The date when the host started hosting on Airbnb
       - name: host_is_superhost
-        description: Indicates whether the host has earned the Superhost badge on their profile, recognizing consistent high-quality hosting.
+        description: Indicates whether the host has earned the Superhost badge on their profile, recognizing consistent high-quality hosting
       - name: host_neighbourhood
-        description: The neighbourhood or locality the host identifies as their own. This is self-reported and may differ from the listing location.
+        description: The neighbourhood or locality the host identifies as their own. This is self-reported and may differ from the listing location
 
-  - name: stg_airbnb_reviews
+  - name: int_airbnb_reviews
     description: The table containing review-related information for Airbnb listings, including total reviews and detailed review scores.
     columns:
       - name: listing_id
-        description: Unique identifier for each listing.
+        description: Unique identifier for each listing
+        tests:
+          - not_null
+          - unique
       - name: number_of_reviews
-        description: Total number of reviews received for the listing.
+        description: Total number of reviews received for the listing
       - name: review_scores_rating
-        description: Overall rating score given by guests, typically on a scale from 1 to 100.
+        description: Overall rating score given by guests, typically on a scale from 1 to 100
       - name: review_scores_accuracy
-        description: Rating reflecting how accurately the listing description matched the actual experience.
+        description: Rating reflecting how accurately the listing description matched the actual experience
       - name: review_scores_cleanliness
-        description: Rating of the cleanliness of the listing as reported by guests.
+        description: Rating of the cleanliness of the listing as reported by guests
       - name: review_scores_checkin
-        description: Rating of the check-in experience, including ease and convenience.
+        description: Rating of the check-in experience, including ease and convenience
       - name: review_scores_communication
-        description: Rating of the host's responsiveness and communication with guests.
+        description: Rating of the host's responsiveness and communication with guests
       - name: review_scores_value
-        description: Rating of the value for money provided by the listing.
+        description: Rating of the value for money provided by the listing
 
-  - name: stg_suburb_lga_map
+  - name: int_suburb_lga_map
     description: Mapping of Local Government Area (LGA) in New South Wales to their Suburbs. Each row represents a suburb within a specific LGA as recorded in 2016 Census.
     columns:
       - name: lga_name
         description: Name of Local Government Area (LGA)
-
-      - name: surburb_name
+      - name: suburb_name
         description: Name of the suburb within the LGA
 
-  - name: stg_lga_lookup
+  - name: int_lga_lookup
     description: >
       Mapping of Local Government Area (LGA) names to their unique LGA codes.
       Each row represents a distinct LGA with its corresponding name and code.
@@ -88,16 +90,14 @@ models:
       - name: lga_name
         description: Name of the Local Government Area (LGA)
 
-  - name: stg_census_g01
-    description: >
-      2016 Australian Census demographic data for New South Wales (NSW) by Local Government Area (LGA).
+  - name: int_census_g01
+    description: 2016 Australian Census demographic data for New South Wales (NSW) by Local Government Area (LGA).
     columns:
       - name: LGA_CODE_2016
         description: Local Government Area code (2016)
         tests:
           - not_null
           - unique
-
       - name: Tot_P_M
         description: Total number of male persons
       - name: Tot_P_F
@@ -327,29 +327,26 @@ models:
       - name: Count_Persons_other_dwgs_P
         description: Total number of persons occupying other dwellings
 
-  - name: stg_census_g02
+  - name: int_census_g02
     description: >
       Demographic and socioeconomic summary statistics from the 2016 Australian Census for Local Government Areas (LGAs) in NSW.
       Includes data on average household size, median age, income, mortgage repayments, rent, and housing occupancy.
     columns:
       - name: average_household_size
-        description: Average number of persons per household.
+        description: Average number of persons per household
       - name: median_age_persons
-        description: Median age of persons in the LGA.
+        description: Median age of persons in the LGA
       - name: median_mortgage_repay_monthly
-        description: Median monthly mortgage repayment amount.
+        description: Median monthly mortgage repayment amount
       - name: median_tot_prsnl_inc_weekly
-        description: Median total personal income per week.
+        description: Median total personal income per week
       - name: median_rent_weekly
-        description: Median weekly rent paid.
+        description: Median weekly rent paid
       - name: median_tot_fam_inc_weekly
-        description: Median total family income per week.
+        description: Median total family income per week
       - name: average_num_psns_per_bedroom
-        description: Average number of persons per bedroom in dwellings.
+        description: Average number of persons per bedroom in dwellings
       - name: median_tot_hhd_inc_weekly
-        description: Median total household income per week.
+        description: Median total household income per week
       - name: lga_code_2016
-        description: Local Government Area code (2016).
-        tests:
-          - not_null
-          - unique
+        description: Local Government Area code (2016)
