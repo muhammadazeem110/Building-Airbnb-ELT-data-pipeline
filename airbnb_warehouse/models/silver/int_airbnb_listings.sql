@@ -8,7 +8,6 @@ SELECT
     airbnb.scraped_date,
     airbnb.listing_id,
     airbnb.host_id,
-    lga.lga_code,
     airbnb.listing_neighbourhood,
     airbnb.property_type,
     airbnb.room_type,
@@ -17,6 +16,4 @@ SELECT
     airbnb.has_availability,
     airbnb.availability_30
 FROM airbnb_data airbnb
-JOIN {{ ref('int_lga_lookup') }} lga
-    ON airbnb.listing_neighbourhood = lga.lga_name
 ORDER BY airbnb.scraped_date

@@ -1,0 +1,40 @@
+snapshots:
+  - name: snap_listings
+    description: "Tracks changes to Airbnb listing data over time using a timestamp-based snapshot strategy SCD(2)."
+    target_schema: snapshots
+    unique_key: listing_id
+    strategy: timestamp
+    updated_at: scraped_date
+
+    columns:
+      listing_id:
+        description: Unique identifier for each listing.
+        tests:
+          - not_null
+          - unique
+      host_id:
+        description: Unique identifier for the host of the listing.
+      scrape_id:
+        description: Identifier for the scraping session used to collect the data.
+      scraped_date:
+        description: Timestamp when the listing data was scraped (used for change tracking).
+      listing_neighbourhood:
+        description: The general area or Local Government Area (LGA) where the listing is located.
+      property_type:
+        description: Type of property listed, e.g., Apartment, House, Townhouse.
+      room_type:
+        description: Type of room available, e.g., Entire home/apt, Private room, Shared room.
+      accommodates:
+        description: The maximum number of guests the listing can accommodate.
+      price:
+        description: The nightly price of the listing.
+      has_availability:
+        description: Indicates whether the listing is currently available for booking (TRUE/FALSE).
+      availability_30:
+        description: Number of days the listing is available in the next 30 days.
+      dbt_valid_from:
+        description: Timestamp when this version of the record became valid (managed by dbt snapshot engine).
+      dbt_valid_to:
+        description: Timestamp when this version of the record was superseded (NULL if it's the current version).
+      dbt_updated_at:
+        description: Timestamp of the most recent update detected in the source row (mirrors `scraped_date`).

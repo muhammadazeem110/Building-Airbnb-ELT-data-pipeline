@@ -73,3 +73,18 @@ Runtime Error
 [0m11:24:22.958610 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000020BE7C3E6C0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000020BE809D040>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000020BE5ED7230>]}
 [0m11:24:22.960610 [debug] [MainThread]: Flushing usage events
 [0m11:24:24.966558 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m19:09:49.317074 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F8F1A6A8A0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F8F42DF200>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F8F3F445F0>]}
+
+
+============================== 19:09:49.642367 | 2ab27a67-ce4a-4390-9cec-8c2e18b0ec73 ==============================
+[0m19:09:49.642367 [info ] [MainThread]: Running with dbt=1.9.4
+[0m19:09:49.644237 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': 'C:\\Users\\Dell\\.dbt', 'fail_fast': 'False', 'debug': 'False', 'log_path': 'logs', 'version_check': 'True', 'warn_error': 'None', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'None', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'introspect': 'True', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'target_path': 'None', 'invocation_command': 'dbt docs serve', 'send_anonymous_usage_stats': 'True'}
+[0m19:09:49.646235 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path G:\1. Data Engineer\1. DataCamp\DE Projects\dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m19:09:49.648217 [debug] [MainThread]: Command `dbt docs serve` failed at 19:09:49.648217 after 0.51 seconds
+[0m19:09:49.649215 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F8F49393A0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F8F465A180>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F8F44B2B10>]}
+[0m19:09:49.650216 [debug] [MainThread]: Flushing usage events
+[0m19:09:51.387282 [debug] [MainThread]: An error was encountered while trying to flush usage events

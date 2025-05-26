@@ -1,0 +1,16 @@
+version: 2
+
+macros:
+  - name: select_except
+    description: >
+      Dynamically selects all columns from a table except the ones specified in the `exclude_columns` list.
+      Useful for incremental or transformation models where certain metadata columns (e.g., timestamps) should be excluded.
+
+    arguments:
+      - name: table
+        type: relation
+        description: The dbt relation (e.g., ref('my_model')) from which columns are being selected.
+
+      - name: exclude_columns
+        type: list[string]
+        description: A list of column names (as strings) that should be excluded from the SELECT clause.
