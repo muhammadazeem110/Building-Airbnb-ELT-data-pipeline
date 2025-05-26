@@ -4,6 +4,7 @@ import psycopg2
 from airflow import DAG
 from datetime import datetime, timedelta
 from airflow.operators.python import PythonOperator
+
 # from airflow.providers.common.sql.operators.sql import SQLExecuteQueryOperator
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 
@@ -87,18 +88,18 @@ census_g02_task = PythonOperator(
     dag=dag,
 )
 
-lga_code = PythonOperator(
+lga_code_task = PythonOperator(
     task_id="ingest_lga_code",
     python_callable=ingesting_lga_code,
     op_args=["/opt/airflow/datasets/NSW_LGA_CODE.csv"],
     dag=dag,
 )
 
-lga_suburb = PythonOperator(
+lga_suburb_task = PythonOperator(
     task_id="ingest_lga_suburb",
     python_callable=ingesting_lga_suburb,
     op_args=["/opt/airflow/datasets/NSW_LGA_SUBURB.csv"],
     dag=dag,
 )
 
-airbnb_task >> census_g01_task >> census_g02_task >> lga_code >> lga_suburb
+airbnb_task >> census_g01_task >> census_g02_task >> lga_code_task >> lga_suburb_task

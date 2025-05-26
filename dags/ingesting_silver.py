@@ -2,9 +2,9 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator
 import logging
 from datetime import datetime, timedelta
-from cosmos import ProfileConfig, ProjectConfig
+from cosmos import ProfileConfig, ProjectConfig, DbtDag
 from cosmos.profiles import PostgresUserPasswordProfileMapping
-from cosmos.task_group import DbtTaskGroup
+from cosmos.operators import DbtRunOperator, DbtSnapshotOperator, DbtTestOperator
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 
@@ -37,10 +37,20 @@ dag = DAG(
     catchup=False,
 )
 
-dbt_airbnb_silver_task = DbtTaskGroup(
-    group_id="dbt_run_silver_model",
-    project_config=ProjectConfig("/opt/airflow/airbnb_warehouse"),
+dbt_airbnb_silver_task = DbtRunOperator(
+    task_id="dbt_run_silver_model",
+    project_config=ProjectConfig(dbt_project_path="/opt/airflow/airbnb_warehouse"),
     profile_config=profile_config,
     select=["models/silver"],
     dag=dag,
 )
+
+listing_snapshot_task = DbtSnapshotOperator(
+    task_id="run_listing_snapshot",
+    project_config=ProjectConfig(dbt_project_path="/opt/airflow/airbnb_warehouse"),
+    profile_config=profile_config,
+    select=["snapshot"],
+    dag=dag,
+)
+
+dbt_airbnb_silver_task >> listing_snapshot_task
