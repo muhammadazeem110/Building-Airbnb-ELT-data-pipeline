@@ -7,34 +7,66 @@ snapshots:
     updated_at: scraped_date
 
     columns:
-      listing_id:
+      - name: listing_id
         description: Unique identifier for each listing.
         tests:
           - not_null
           - unique
-      host_id:
+      - name: host_id
         description: Unique identifier for the host of the listing.
-      scrape_id:
+      - name: scrape_id
         description: Identifier for the scraping session used to collect the data.
-      scraped_date:
+      - name: scraped_date
         description: Timestamp when the listing data was scraped (used for change tracking).
-      listing_neighbourhood:
+      - name: listing_neighbourhood
         description: The general area or Local Government Area (LGA) where the listing is located.
-      property_type:
+      - name: property_type
         description: Type of property listed, e.g., Apartment, House, Townhouse.
-      room_type:
+      - name: room_type
         description: Type of room available, e.g., Entire home/apt, Private room, Shared room.
-      accommodates:
+      - name: accommodates
         description: The maximum number of guests the listing can accommodate.
-      price:
+      - name: price
         description: The nightly price of the listing.
-      has_availability:
+      - name: has_availability
         description: Indicates whether the listing is currently available for booking (TRUE/FALSE).
-      availability_30:
+      - name: availability_30
         description: Number of days the listing is available in the next 30 days.
-      dbt_valid_from:
+      - name: dbt_valid_from
         description: Timestamp when this version of the record became valid (managed by dbt snapshot engine).
-      dbt_valid_to:
+      - name: dbt_valid_to
         description: Timestamp when this version of the record was superseded (NULL if it's the current version).
-      dbt_updated_at:
+      - name: dbt_updated_at
         description: Timestamp of the most recent update detected in the source row (mirrors `scraped_date`).
+
+  - name: snap_host
+    description: >
+      Snapshot of host dimension with SCD Type 2 logic to capture changes in host attributes like name, neighbourhood, and superhost status over time.
+    target_schema: snapshots
+    unique_key: host_id
+    strategy: timestamp
+    updated_at: scraped_date
+
+    columns:
+      - name: host_id
+        description: Unique identifier for the host.
+        tests:
+          - not_null
+      - name: host_name
+        description: Name of the host.
+      - name: host_neighbourhood
+        description: Neighbourhood of the host, if available.
+      - name: host_since
+        description: The date the host first registered on Airbnb.
+      - name: host_is_superhost
+        description: Whether the host is a superhost.
+      - name: scraped_date
+        description: The date on which the host data was scraped.
+      - name: dbt_scd_id
+        description: Unique identifier for the SCD2 version of the record.
+      - name: dbt_valid_from
+        description: Timestamp when this version became valid.
+      - name: dbt_valid_to
+        description: Timestamp when this version stopped being valid (null if current).
+      - name: dbt_updated_at
+        description: Timestamp indicating the source record's last update time.

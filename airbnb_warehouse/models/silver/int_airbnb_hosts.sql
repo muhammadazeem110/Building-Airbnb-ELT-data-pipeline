@@ -10,6 +10,7 @@ WITH airbnb_data AS (
 
 SELECT DISTINCT
     host_id,
+    scraped_date,
     {% for col, default in coalesced_columns %}
         COALESCE(NULLIF({{ col }}, ''), {{ default }}) AS {{ col }}{% if not loop.last %},{% endif %}
     {% endfor %},
