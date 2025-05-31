@@ -39,7 +39,7 @@ snapshots:
       - name: dbt_updated_at
         description: Timestamp of the most recent update detected in the source row (mirrors `scraped_date`).
 
-  - name: snap_host
+  - name: snap_hosts
     description: >
       Snapshot of host dimension with SCD Type 2 logic to capture changes in host attributes like name, neighbourhood, and superhost status over time.
     target_schema: snapshots

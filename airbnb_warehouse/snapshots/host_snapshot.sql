@@ -1,11 +1,11 @@
-{% snapshot snap_host %}
+{% snapshot snap_hosts %}
 
 {{
     config(
         target_schema = "snapshots",
         unique_key = "host_id",
-        strategy = "timestamp",
-        updated_at = "scraped_date"
+        strategy = "check",
+        check_cols = "all"
     )
 }}
 
