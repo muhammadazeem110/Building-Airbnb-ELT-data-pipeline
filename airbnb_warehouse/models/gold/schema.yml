@@ -1,0 +1,191 @@
+version: 2
+
+models:
+  - name: fact_listing
+    description: >
+      Fact table containing Airbnb listing metrics including availability, price, reviews, and calculated estimated revenue. 
+      Joins listing, host, LGA, and review data for use in analytical queries.
+    columns:
+      - name: listing_sk
+        description: Surrogate key for the listing, derived from listing_id and dbt_valid_from.
+        tests:
+          - not_null
+      - name: host_sk
+        description: Surrogate key for the host, derived from host_id and dbt_valid_from.
+        tests:
+          - not_null
+      - name: lga_sk
+        description: Surrogate key for the Local Government Area associated with the listing.
+        tests:
+          - not_null
+      - name: price
+        description: Price per night of the listing in AUD.
+      - name: availability_30
+        description: Number of days in the next 30 that the listing is available.
+      - name: number_of_reviews
+        description: Total number of reviews for the listing.
+      - name: review_scores_rating
+        description: Overall rating score for the listing.
+      - name: review_scores_accuracy
+        description: Accuracy rating score for the listing.
+      - name: review_scores_cleanliness
+        description: Cleanliness rating score for the listing.
+      - name: review_scores_checkin
+        description: Check-in rating score for the listing.
+      - name: review_scores_communication
+        description: Communication rating score for the listing.
+      - name: review_scores_value
+        description: Value rating score for the listing.
+      - name: is_available
+        description: Flag indicating whether the listing is currently available (1 = True, 0 = False).
+        tests:
+          - accepted_values:
+              values: [0, 1]
+      - name: number_of_stays
+        description: Estimated number of booked nights (30 - availability_30), null if not available.
+      - name: estimated_revenue
+        description: Estimated revenue = number_of_stays * price. Null if not available.
+
+  - name: dim_host
+    description: >
+      Dimension table for Airbnb hosts. Tracks slowly changing dimensions (SCD Type 2) including host attributes such as name, neighbourhood, and superhost status.
+      Includes a surrogate key and SCD metadata columns.
+    columns:
+      - name: host_sk
+        description: Surrogate key for the host, generated using dbt_scd_id.
+        tests:
+          - not_null
+          - unique
+      - name: host_id
+        description: Natural/business key representing the unique identifier of the host.
+        tests:
+          - not_null
+      - name: host_name
+        description: Name of the host.
+      - name: host_neighbourhood
+        description: Neighbourhood associated with the host's listings.
+      - name: host_since
+        description: Date when the host joined Airbnb.
+      - name: host_is_superhost
+        description: Boolean indicating whether the host is a superhost.
+      - name: updated_at
+        description: Timestamp of the most recent update.
+      - name: valid_from
+        description: Start timestamp of the current record version (SCD Type 2).
+      - name: valid_to
+        description: End timestamp of the current record version (SCD Type 2). Null if current.
+      - name: is_current
+        description: Flag indicating whether the record is the current active version (True = current).
+        tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+
+  - name: dim_lga
+    description: >
+      Dimension table for Local Government Areas (LGAs), tracking slowly changing attributes using SCD Type 2.
+      Includes surrogate key, valid time range, and current record flag.
+    columns:
+      - name: lga_sk
+        description: Surrogate key for the LGA, generated from lga_code and dbt_valid_from.
+        tests:
+          - not_null
+          - unique
+      - name: lga_code
+        description: Unique identifier for the Local Government Area (natural key).
+        tests:
+          - not_null
+      - name: lga_name
+        description: Name of the Local Government Area.
+      - name: updated_at
+        description: Timestamp when the record was last updated.
+      - name: valid_from
+        description: Start timestamp of the record's validity (SCD Type 2 tracking).
+        tests:
+          - not_null
+      - name: valid_to
+        description: End timestamp of the record's validity (SCD Type 2 tracking). Null if still current.
+      - name: is_current
+        description: Boolean flag indicating if the record is the current active version.
+        tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+
+  - name: dim_listing
+    description: >
+      Dimension table for Airbnb listings with SCD Type 2 logic. Captures availability and property features over time.
+    columns:
+      - name: listing_sk
+        description: Surrogate key for listing, generated from listing_id and dbt_valid_from.
+        tests:
+          - not_null
+          - unique
+      - name: listing_id
+        description: Unique identifier for the listing.
+        tests:
+          - not_null
+      - name: host_id
+        description: Foreign key to the host who owns the listing.
+      - name: listing_neighbourhood
+        description: Name of the listing's neighbourhood or LGA.
+      - name: property_type
+        description: Type of property (e.g. Apartment, House).
+      - name: room_type
+        description: Type of room offered (e.g. Private room, Entire home).
+      - name: accommodates
+        description: Maximum number of guests the listing can accommodate.
+      - name: availability_30
+        description: Availability over the next 30 days.
+      - name: has_availability
+        description: Boolean flag indicating availability status.
+      - name: updated_at
+        description: Timestamp of last update.
+      - name: valid_from
+        description: Start of validity period for SCD2.
+      - name: valid_to
+        description: End of validity period for SCD2.
+      - name: is_current
+        description: Boolean flag indicating if the row is the current version.
+
+  - name: dim_suburb
+    description: >
+      Dimension table for suburbs with SCD Type 2 support. Captures suburb-to-LGA relationships over time.
+    columns:
+      - name: suburb_sk
+        description: Surrogate key for suburb, generated from lga_name, suburb_name, and dbt_valid_from.
+        tests:
+          - not_null
+          - unique
+      - name: lga_name
+        description: Name of the Local Government Area.
+      - name: suburb_name
+        description: Name of the suburb.
+      - name: updated_at
+        description: Timestamp when the record was last updated.
+      - name: valid_from
+        description: SCD2 start time.
+      - name: valid_to
+        description: SCD2 end time.
+      - name: is_current
+        description: Boolean indicating current active record.
+
+  - name: ref_census_g01
+    description: >
+      Reference table combining G01 census demographic data with LGA dimension.
+    columns:
+      - name: lga_sk
+        description: Foreign key to LGA dimension.
+        tests:
+          - not_null
+          - unique
+
+  - name: ref_census_g02
+    description: >
+      Reference table combining G02 census demographic data with LGA dimension.
+    columns:
+      - name: lga_sk
+        description: Foreign key to LGA dimension.
+        tests:
+          - not_null
+          - unique
