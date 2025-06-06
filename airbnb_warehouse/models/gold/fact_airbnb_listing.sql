@@ -4,6 +4,7 @@ WITH fact_listing AS (
         host.host_sk,
         lga.lga_sk,
 
+        scraped_date,
         snap_listing.price,
         listing.availability_30,
 

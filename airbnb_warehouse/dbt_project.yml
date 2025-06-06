@@ -45,6 +45,9 @@ models:
     gold:
       +schema: gold
       +materialized: table
+    datamart:
+      +schema: datamart
+      +materialized: view
     snapshot:
       +target_schema: snapshots
       +materialized: snapshot
