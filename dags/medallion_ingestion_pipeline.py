@@ -5,11 +5,22 @@ import psycopg2
 from airflow import DAG
 from datetime import datetime, timedelta
 from airflow.operators.python import PythonOperator
-# from airflow.providers.common.sql.operators.sql import SQLExecuteQueryOperator
+from airflow.providers.common.sql.operators.sql import SQLExecuteQueryOperator
 from airflow.providers.postgres.hooks.postgres import PostgresHook
+from cosmos import ProfileConfig, ProjectConfig, DbtDag
+from cosmos.profiles import PostgresUserPasswordProfileMapping
+from cosmos.operators import DbtRunOperator, DbtSnapshotOperator, DbtTestOperator
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 
+profile_config = ProfileConfig(
+    profile_name="airbnb_warehouse",
+    target_name="dev",
+    profile_mapping=PostgresUserPasswordProfileMapping(
+        conn_id="airbnb_connection",
+        profile_args={"schema": "analytics_silver", "database": "postgres"},
+    ),
+)
 
 def ingesting_data(file_path, table_name):
     try:
@@ -29,11 +40,11 @@ def ingesting_data(file_path, table_name):
 
 
 def ingesting_airbnb(airbnb_file_path):
-    for file in airbnb_file_path:
+    for file in os.listdir(airbnb_file_path):
         full_file_path = os.path.join(airbnb_file_path, file)
         if os.path.isfile(full_file_path):
             try:
-                ingesting_data(airbnb_file_path, "airbnb")
+                ingesting_data(full_file_path, "airbnb")
                 logging.info(f"Inserted: {file}")
             except Exception as e:
                 logging.error(f"Failed to insert {file}: {e}")
@@ -69,7 +80,10 @@ default_args = {
 dag = DAG(
     "ingesting_datasets",
     default_args=default_args,
-    description="This DAG handles the ingestion of local CSV files into their respective tables in the Postgres Bronze schema, forming the first layer of the Medallion architecture.",
+    description=(
+    """This DAG handles both the ingestion of raw CSV files into the Postgres Bronze schema 
+    and the transformation of data into the Silver and Gold layers using dbt, following 
+    the Medallion architecture."""),
     schedule=None,
 )
 
@@ -89,7 +103,7 @@ census_g01_task = PythonOperator(
 )
 
 census_g02_task = PythonOperator(
-    task_id="ingest_census_go2",
+    task_id="ingest_census_g02",
     python_callable=ingesting_census_g02,
     op_args=["/opt/airflow/datasets/2016Census_G02_NSW_LGA.csv"],
     dag=dag,
@@ -109,4 +123,32 @@ lga_suburb_task = PythonOperator(
     dag=dag,
 )
 
-[airbnb_task, census_g01_task, census_g02_task, lga_code_task, lga_suburb_task]
+# Silver layer
+dbt_airbnb_silver_task = DbtRunOperator(
+    task_id="dbt_run_silver_layer",
+    project_config=ProjectConfig(dbt_project_path="/opt/airflow/airbnb_warehouse"),
+    profile_config=profile_config,
+    select=["models/silver"],
+    dag=dag,
+)
+
+# Snapshot
+listing_snapshot_task = DbtSnapshotOperator(
+    task_id="run_listing_snapshot",
+    project_config=ProjectConfig(dbt_project_path="/opt/airflow/airbnb_warehouse"),
+    profile_config=profile_config,
+    select=["snapshot"],
+    dag=dag,
+)
+
+# Gold layer
+dbt_gold_layer_task = DbtRunOperator(
+    task_id = "dbt_run_gold_layer",
+    project_config= ProjectConfig(dbt_project_path="/opt/airflow/airbnb_warehouse"),
+    profile_config= profile_config,
+    select=["models/gold"],
+    dag=dag,
+)
+
+# Dependencies
+[airbnb_task, census_g01_task, census_g02_task, lga_code_task, lga_suburb_task] >> dbt_airbnb_silver_task >> listing_snapshot_task >> dbt_gold_layer_task
