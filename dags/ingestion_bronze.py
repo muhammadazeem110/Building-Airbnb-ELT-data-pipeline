@@ -1,10 +1,10 @@
 import pandas as pd
+import os
 import logging
 import psycopg2
 from airflow import DAG
 from datetime import datetime, timedelta
 from airflow.operators.python import PythonOperator
-
 # from airflow.providers.common.sql.operators.sql import SQLExecuteQueryOperator
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 
@@ -29,7 +29,14 @@ def ingesting_data(file_path, table_name):
 
 
 def ingesting_airbnb(airbnb_file_path):
-    ingesting_data(airbnb_file_path, "airbnb_05_2020")
+    for file in airbnb_file_path:
+        full_file_path = os.path.join(airbnb_file_path, file)
+        if os.path.isfile(full_file_path):
+            try:
+                ingesting_data(airbnb_file_path, "airbnb")
+                logging.info(f"Inserted: {file}")
+            except Exception as e:
+                logging.error(f"Failed to insert {file}: {e}")
 
 
 def ingesting_census_g01(census_g01_file_path):
@@ -70,7 +77,7 @@ dag = DAG(
 airbnb_task = PythonOperator(
     task_id="ingest_airbnb",
     python_callable=ingesting_airbnb,
-    op_args=["/opt/airflow/datasets/NSW_LGA_CODE.csv"],
+    op_args=["/opt/airflow/datasets/airbnb"],
     dag=dag,
 )
 
@@ -102,4 +109,4 @@ lga_suburb_task = PythonOperator(
     dag=dag,
 )
 
-airbnb_task >> census_g01_task >> census_g02_task >> lga_code_task >> lga_suburb_task
+[airbnb_task, census_g01_task, census_g02_task, lga_code_task, lga_suburb_task]

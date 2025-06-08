@@ -53,4 +53,4 @@ listing_snapshot_task = DbtSnapshotOperator(
     dag=dag,
 )
 
-dbt_airbnb_silver_task >> listing_snapshot_task
+dbt_airbnb_silver_task >> listing_snapshot_task >>

@@ -17,7 +17,7 @@ def extract_data():
     # create destination dir if not exist
     os.makedirs(destination_path, exist_ok=True)
 
-    for path in [census_datasets, lga_dataset]:
+    for path in [census_datasets, lga_dataset, airbnb_dataset]:
         if not os.path.exists(path):
             logging.warning(f"Source directory not found: {path}")
             continue
@@ -31,20 +31,20 @@ def extract_data():
                     except Exception as e:
                         logging.error(f"Failed to copy {file}: {e}")
 
-    if os.path.exists(airbnb_dataset):
-        target_file = "05_2020.csv"
-        full_file_path = os.path.join(airbnb_dataset, target_file)
+    # if os.path.exists(airbnb_dataset):
+    #     target_file = "05_2020.csv"
+    #     full_file_path = os.path.join(airbnb_dataset, target_file)
 
-        if os.path.isfile(full_file_path):
-            try:
-                shutil.copy(full_file_path, destination_path)
-                logging.info(f"Copied: {target_file}")
-            except Exception as e:
-                logging.error(f"Failed to copy {target_file}: {e}")
-        else:
-            logging.warning(f"Target file not found {full_file_path}")
-    else:
-        logging.warning(f"airbnb dataset directory not found: {airbnb_dataset}")
+    #     if os.path.isfile(full_file_path):
+    #         try:
+    #             shutil.copy(full_file_path, destination_path)
+    #             logging.info(f"Copied: {target_file}")
+    #         except Exception as e:
+    #             logging.error(f"Failed to copy {target_file}: {e}")
+    #     else:
+    #         logging.warning(f"Target file not found {full_file_path}")
+    # else:
+    #     logging.warning(f"airbnb dataset directory not found: {airbnb_dataset}")
 
 
 default_args = {
