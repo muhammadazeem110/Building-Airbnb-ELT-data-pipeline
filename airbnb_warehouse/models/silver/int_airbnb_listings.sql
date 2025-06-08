@@ -1,6 +1,6 @@
 WITH airbnb_data AS (
     SELECT *
-    FROM {{ source('bronze', 'airbnb_05_2020') }}
+    FROM {{ source('bronze', 'airbnb') }}
 )
 
 SELECT

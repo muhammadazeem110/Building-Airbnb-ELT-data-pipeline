@@ -1,11 +1,11 @@
 {{ config(
     indexes=[
-      {'columns': ['host_sk'], 'unique': True}
+      {'columns': ['host_sk']}
     ]
 ) }}
 
 SELECT
-    {{ dbt_utils.generate_surrogate_key(["dbt_scd_id"]) }} AS host_sk,
+    {{ dbt_utils.generate_surrogate_key(["dbt_scd_id", "dbt_valid_from"]) }} AS host_sk,
     host_id,
     host_name,
     host_neighbourhood,

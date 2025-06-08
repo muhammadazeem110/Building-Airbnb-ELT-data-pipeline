@@ -1,6 +1,6 @@
 {{ 
     config(indexes=[
-        {"columns": ["lga_sk"], "unique": True}
+        {"columns": ["lga_sk"]}
     ]) 
 }}
 

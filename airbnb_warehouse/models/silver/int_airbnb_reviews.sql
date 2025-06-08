@@ -1,6 +1,6 @@
 WITH airbnb_data AS (
     SELECT *
-    From {{ source('bronze', 'airbnb_05_2020') }}
+    From {{ source('bronze', 'airbnb') }}
 )
 
 {% set coalesced_columns = [

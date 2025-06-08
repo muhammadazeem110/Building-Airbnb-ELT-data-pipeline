@@ -8,10 +8,9 @@ snapshots:
 
     columns:
       - name: listing_id
-        description: Unique identifier for each listing.
+        description: Identifier for each listing.
         tests:
           - not_null
-          - unique
       - name: host_id
         description: Unique identifier for the host of the listing.
       - name: scrape_id

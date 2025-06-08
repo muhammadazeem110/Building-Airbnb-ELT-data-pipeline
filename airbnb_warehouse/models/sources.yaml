@@ -5,7 +5,7 @@ sources:
     database: postgres
     schema: bronze
     tables:
-      - name: airbnb_05_2020
+      - name: airbnb
       - name: census_g01_nsw_lga_2016
       - name: census_g02_nsw_lga_2016
       - name: nsw_lga_code

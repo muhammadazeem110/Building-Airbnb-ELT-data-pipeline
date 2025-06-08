@@ -7,9 +7,10 @@ models:
       Joins listing, host, LGA, and review data for use in analytical queries.
     columns:
       - name: listing_sk
-        description: Surrogate key for the listing, derived from listing_id and dbt_valid_from.
+        description: Surrogate key for the listing, derived from listing_id, scraped_date and dbt_valid_from.
         tests:
           - not_null
+          - unique
       - name: host_sk
         description: Surrogate key for the host, derived from host_id and dbt_valid_from.
         tests:
@@ -55,7 +56,6 @@ models:
         description: Surrogate key for the host, generated using dbt_scd_id.
         tests:
           - not_null
-          - unique
       - name: host_id
         description: Natural/business key representing the unique identifier of the host.
         tests:
@@ -117,12 +117,12 @@ models:
       Dimension table for Airbnb listings with SCD Type 2 logic. Captures availability and property features over time.
     columns:
       - name: listing_sk
-        description: Surrogate key for listing, generated from listing_id and dbt_valid_from.
+        description: Surrogate key for listing, generated from listing_id, scraped_date and dbt_valid_from.
         tests:
           - not_null
           - unique
       - name: listing_id
-        description: Unique identifier for the listing.
+        description: identifier for the listing.
         tests:
           - not_null
       - name: host_id

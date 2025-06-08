@@ -1,11 +1,11 @@
 {{ config(
     indexes = [
-        {"columns": ["listing_sk"], "unique": True}
+        {"columns": ["listing_sk"]}
     ]
 ) }}
 
 SELECT
-    {{ dbt_utils.generate_surrogate_key(['listing_id', 'dbt_valid_from']) }} AS listing_sk,
+    {{ dbt_utils.generate_surrogate_key(['listing_id', 'scraped_date', 'dbt_valid_from']) }} AS listing_sk,
     listing_id,
     host_id,
     listing_neighbourhood,

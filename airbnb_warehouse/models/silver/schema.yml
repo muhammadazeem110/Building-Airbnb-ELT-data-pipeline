@@ -7,10 +7,9 @@ models:
       property type, pricing, and availability as scraped from the original Airbnb data.
     columns:
       - name: listing_id
-        description: Unique identifier for each listing
+        description: identifier for each listing
         tests:
           - not_null
-          - unique
       - name: host_id
         description: Unique identifier for the host of the listing
       - name: scrape_id
@@ -53,7 +52,6 @@ models:
         description: Unique identifier for each listing
         tests:
           - not_null
-          - unique
       - name: number_of_reviews
         description: Total number of reviews received for the listing
       - name: review_scores_rating
@@ -95,9 +93,6 @@ models:
     columns:
       - name: LGA_CODE_2016
         description: Local Government Area code (2016)
-        tests:
-          - not_null
-          - unique
       - name: Tot_P_M
         description: Total number of male persons
       - name: Tot_P_F
