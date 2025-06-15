@@ -5,7 +5,7 @@
 
 
 WITH airbnb_data AS (
-    SELECT *
+    SELECT host_id, host_name, host_neighbourhood, host_since, host_is_superhost, scraped_date
     FROM {{ source('bronze', 'airbnb') }}
 ),
 
@@ -19,14 +19,14 @@ ranked_hosts AS (
     WHERE host_id IS NOT NULL
 )
 
-SELECT DISTINCT
+SELECT
     host_id,
     
     {% for col, default in coalesced_columns %}
         COALESCE(NULLIF({{ col }}, ''), {{ default }}) AS {{ col }}{% if not loop.last %},{% endif %}
     {% endfor %},
 
-    COALESCE(host_since, null) as host_since,
+    host_since,
     host_is_superhost
 FROM ranked_hosts
 where row_num = 1

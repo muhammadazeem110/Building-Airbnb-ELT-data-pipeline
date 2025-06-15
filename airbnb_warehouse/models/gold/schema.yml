@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: fact_listing
+  - name: fact_airbnb_listing
     description: >
       Fact table containing Airbnb listing metrics including availability, price, reviews, and calculated estimated revenue. 
       Joins listing, host, LGA, and review data for use in analytical queries.
@@ -170,7 +170,7 @@ models:
       - name: is_current
         description: Boolean indicating current active record.
 
-  - name: ref_census_g01
+  - name: ref_census_demographics
     description: >
       Reference table combining G01 census demographic data with LGA dimension.
     columns:
@@ -180,7 +180,7 @@ models:
           - not_null
           - unique
 
-  - name: ref_census_g02
+  - name: ref_census_economics
     description: >
       Reference table combining G02 census demographic data with LGA dimension.
     columns:
