@@ -7,6 +7,7 @@
 SELECT
     {{ dbt_utils.generate_surrogate_key(['listing_id', 'scraped_date', 'dbt_valid_from']) }} AS listing_sk,
     listing_id,
+    scraped_date,
     host_id,
     listing_neighbourhood,
     property_type,

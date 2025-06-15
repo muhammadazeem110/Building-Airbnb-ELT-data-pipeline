@@ -2,16 +2,16 @@ SELECT
     property_type,
     room_type,
     accommodates,
-    DATE_TRUNC('month', scraped_date) AS month,
+    DATE_TRUNC('month', fal.scraped_date) AS month,
 
     -- Active listing rate
-    ROUND(SUM(is_available) * 100.0 / COUNT(is_available), 2) AS active_listing_rate,
+    ROUND(SUM(active_listing) * 100.0 / COUNT(active_listing), 2) AS active_listing_rate,
 
     -- Minimum, maximum, median, and average price for active listings
-    MIN(CASE WHEN is_available = 1 THEN price END) AS minimum_price,
-    MAX(CASE WHEN is_available = 1 THEN price END) AS maximum_price,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY CASE WHEN is_available = 1 THEN price END) AS median_price,
-    ROUND(AVG(CASE WHEN is_available = 1 THEN price END), 2) AS average_price,
+    MIN(CASE WHEN active_listing = 1 THEN price END) AS minimum_price,
+    MAX(CASE WHEN active_listing = 1 THEN price END) AS maximum_price,
+    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY CASE WHEN active_listing = 1 THEN price END) AS median_price,
+    ROUND(AVG(CASE WHEN active_listing = 1 THEN price END), 2) AS average_price,
 
     -- Number of distinct hosts
     COUNT(DISTINCT dh.host_id) AS distinct_host_id,
@@ -23,12 +23,12 @@ SELECT
     2) AS superhost_rate,
 
     -- Average of review_scores_rating for active listings
-    ROUND(AVG(CASE WHEN is_available = 1 THEN review_scores_rating END), 2) AS avg_scores_rating,
+    ROUND(AVG(CASE WHEN active_listing = 1 THEN review_scores_rating END), 2) AS avg_scores_rating,
 
     -- Percentage change for active listings
     ROUND(
-        (SUM(is_available) - LAG(SUM(is_available)) OVER (PARTITION BY dl.listing_neighbourhood ORDER BY DATE_TRUNC('month', scraped_date))) /
-        NULLIF(LAG(SUM(is_available)) OVER (PARTITION BY dl.listing_neighbourhood ORDER BY DATE_TRUNC('month', scraped_date)), 0) * 100,
+        (SUM(active_listing) - LAG(SUM(active_listing)) OVER (PARTITION BY dl.listing_neighbourhood ORDER BY DATE_TRUNC('month', fal.scraped_date))) /
+        NULLIF(LAG(SUM(active_listing)) OVER (PARTITION BY dl.listing_neighbourhood ORDER BY DATE_TRUNC('month', fal.scraped_date)), 0) * 100,
     2) AS percent_chg_active,
 
     -- Total number of stays
@@ -43,6 +43,6 @@ JOIN {{ref("dim_listing")}} AS dl
 JOIN {{ref("dim_host")}} AS dh
     ON fal.host_sk = dh.host_sk
 
-GROUP BY property_type, room_type, accommodates, dl.listing_neighbourhood, DATE_TRUNC('month', scraped_date)
+GROUP BY property_type, room_type, accommodates, dl.listing_neighbourhood, DATE_TRUNC('month', fal.scraped_date)
 ORDER BY month
 

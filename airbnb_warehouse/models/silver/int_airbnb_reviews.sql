@@ -1,5 +1,5 @@
 WITH airbnb_data AS (
-    SELECT listing_id, number_of_reviews, review_scores_rating, review_scores_accuracy, review_scores_cleanliness, review_scores_checkin, review_scores_communication, review_scores_value
+    SELECT listing_id, scraped_date, number_of_reviews, review_scores_rating, review_scores_accuracy, review_scores_cleanliness, review_scores_checkin, review_scores_communication, review_scores_value
     From {{ source('bronze', 'airbnb') }}
 )
 
@@ -15,6 +15,7 @@ WITH airbnb_data AS (
 
 SELECT
     listing_id,
+    scraped_date,
     {% for col, default in coalesced_columns %}
         COALESCE({{ col }},{{ default }}) as {{ col }} {% if not loop.last %}, {% endif %}
     {% endfor %}
