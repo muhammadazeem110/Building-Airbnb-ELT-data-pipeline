@@ -6,11 +6,11 @@ This project builds a production-grade ELT data pipeline using Apache Airflow, d
 ## Project Brief
 ![Project Brief](https://github.com/muhammadazeem110/Building-Airbnb-ELT-data-pipeline/blob/main/Data%20Engineering%20Taks%20Brief.docx.pdf)
 
-Final Report
+## Final Report
 ![Full Project Report (PDF)](https://github.com/muhammadazeem110/Building-Airbnb-ELT-data-pipeline/blob/main/Report.pdf)
 
 Includes:
-Architecture Explanation
-ELT Pipeline Design
-Business Question Analysis
-Visuals & Query Results
+- Architecture Explanation
+- ELT Pipeline Design
+- Business Question Analysis
+- Visuals & Query Results
